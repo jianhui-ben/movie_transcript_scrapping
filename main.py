@@ -46,7 +46,7 @@ def scrape_movie_script(url):
         result = [movie_title_year, div.text] if div else [movie_title_year, None]
 
         # Add a delay to avoid rate limiting
-        time.sleep(1)
+        # time.sleep(1)
 
         return result
 
@@ -177,8 +177,8 @@ def save_to_jsonl(data, filename):
 
 # 4. Example usage for scraping multiple pages
 start_page = 1
-end_page = 1794 ## last page is 1794
-pages_per_file = 100
+end_page = 50 ## last page is 1794
+pages_per_file = 10
 
 # List to store scraped data
 dataset = []
@@ -194,7 +194,7 @@ for page in range(start_page, end_page + 1):
 
     if movie_urls:
         for url in movie_urls:
-            print(f"Parsing transcript for {url}")
+            print(f"current page: {page}: parsing transcript for {url}")            
             result = scrape_movie_script(url)
             if result:
                 entry = {
